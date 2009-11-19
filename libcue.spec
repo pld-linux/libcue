@@ -9,6 +9,7 @@ Source0:	http://dl.sourceforge.net/libcue/%{name}-%{version}.tar.bz2
 URL:		http://libcue.sourceforge.net
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.8.3
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
