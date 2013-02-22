@@ -7,6 +7,7 @@ License:	GPL v2, parts BSD-like
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libcue/%{name}-%{version}.tar.bz2
 # Source0-md5:	5f5045f00e6ac92d9a057fe5b0982c69
+Patch0:		%{name}-am.patch
 URL:		http://libcue.sourceforge.net/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
@@ -55,6 +56,7 @@ Statyczna biblioteka libcue.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}

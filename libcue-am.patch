@@ -1,0 +1,11 @@
+--- libcue-1.4.0/configure.ac.orig	2010-05-03 20:10:43.000000000 +0200
++++ libcue-1.4.0/configure.ac	2013-02-22 21:57:31.395997182 +0100
+@@ -2,7 +2,7 @@
+ AC_CONFIG_AUX_DIR([config])
+ AC_CONFIG_MACRO_DIR([config])
+ AM_INIT_AUTOMAKE([foreign 1.9 dist-bzip2])
+-AM_CONFIG_HEADER([config.h])
++AC_CONFIG_HEADERS([config.h])
+ 
+ m4_define([package_major_version], [1])
+ m4_define([package_minor_version], [4])
