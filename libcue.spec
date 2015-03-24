@@ -2,7 +2,7 @@ Summary:	CUE Sheet Parser Library
 Summary(pl.UTF-8):	Biblioteka analizująca Cue Sheet
 Name:		libcue
 Version:	1.4.0
-Release:	1
+Release:	2
 License:	GPL v2, parts BSD-like
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libcue/%{name}-%{version}.tar.bz2
