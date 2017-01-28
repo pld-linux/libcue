@@ -1,17 +1,18 @@
 Summary:	CUE Sheet Parser Library
 Summary(pl.UTF-8):	Biblioteka analizująca Cue Sheet
 Name:		libcue
-Version:	1.4.0
-Release:	2
+Version:	2.1.0
+Release:	1
 License:	GPL v2, parts BSD-like
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/libcue/%{name}-%{version}.tar.bz2
-# Source0-md5:	5f5045f00e6ac92d9a057fe5b0982c69
-Patch0:		%{name}-am.patch
-URL:		http://libcue.sourceforge.net/
-BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1:1.9
-BuildRequires:	libtool
+#Source0Download: https://github.com/lipnitsk/libcue/releases
+Source0:	https://github.com/lipnitsk/libcue/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	0fff773e95175df349329ea34bc775cf
+Patch0:		%{name}-cmake.patch
+URL:		https://github.com/lipnitsk/libcue
+BuildRequires:	bison
+BuildRequires:	cmake >= 2.8
+BuildRequires:	flex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,6 +36,7 @@ Summary:	Header files for libcue library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libcue
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	libcue-static
 
 %description devel
 Header files for libcue library.
@@ -42,35 +44,21 @@ Header files for libcue library.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe biblioteki libcue.
 
-%package static
-Summary:	Static libcue library
-Summary(pl.UTF-8):	Statyczna biblioteka libcue
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-Static libcue library.
-
-%description static -l pl.UTF-8
-Statyczna biblioteka libcue.
-
 %prep
 %setup -q
 %patch0 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure
+install -d build
+cd build
+%cmake ..
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -81,17 +69,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog NEWS
+%doc ChangeLog LICENSE README.md
 %attr(755,root,root) %{_libdir}/libcue.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcue.so.1
+%attr(755,root,root) %ghost %{_libdir}/libcue.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcue.so
-%{_libdir}/libcue.la
-%{_includedir}/libcue-1.4
+%{_includedir}/libcue.h
+%{_includedir}/libcue
 %{_pkgconfigdir}/libcue.pc
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libcue.a
