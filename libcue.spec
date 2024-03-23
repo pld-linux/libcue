@@ -1,14 +1,13 @@
 Summary:	CUE Sheet Parser Library
 Summary(pl.UTF-8):	Biblioteka analizująca Cue Sheet
 Name:		libcue
-Version:	2.2.1
-Release:	2
+Version:	2.3.0
+Release:	1
 License:	GPL v2, parts BSD-like
 Group:		Libraries
 #Source0Download: https://github.com/lipnitsk/libcue/releases
 Source0:	https://github.com/lipnitsk/libcue/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	1dfe65751c3817c76a107bd5a0d924a3
-Patch0:         CVE-2023-43641.patch
+# Source0-md5:	a3daa638ba0bf8581c750e6ea6e82a52
 URL:		https://github.com/lipnitsk/libcue
 BuildRequires:	bison
 BuildRequires:	cmake >= 2.8
@@ -36,7 +35,7 @@ Summary:	Header files for libcue library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libcue
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	libcue-static
+Obsoletes:	libcue-static < 2.1
 
 %description devel
 Header files for libcue library.
@@ -46,7 +45,6 @@ Pliki nagłówkowe biblioteki libcue.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 install -d build
